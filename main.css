@@ -1,3 +1,25 @@
+/* Mobile Menu Styles */
+.mobile-menu {
+  position: fixed;
+  top: 7rem;
+  left: -100%;
+  width: 100%;
+  height: calc(100vh - 7rem);
+  background: var(--surface);
+  transition: left 0.3s ease;
+  
+  &.active {
+    left: 0;
+  }
+}
+
+.menu-toggle {
+  display: none;
+  
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
 /* Modern Reset */
 *, *::before, *::after {
   box-sizing: border-box;
