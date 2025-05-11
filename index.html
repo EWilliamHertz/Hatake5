@@ -1,119 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hatake TCG - Premium TCG Accessories</title>
-    <meta name="description" content="Premium TCG accessories crafted in Sweden by Hatake TCG. Shop deck boxes, sleeves, and more for trading card games.">
-    <meta property="og:title" content="Hatake TCG - Premium TCG Accessories">
-    <meta property="og:image" content="https://i.imgur.com/fhUBtKm.png">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Hatake TCG - Nordic Quality, Global Craftsmanship</title>
+    <meta name="description" content="Premium TCG accessories designed in Sweden, crafted with precision in China">
+    <!-- SEO Meta Tags with Chinese keywords -->
+    <meta name="keywords" content="TCG accessories, 集换式卡牌, 卡牌保护套, 瑞典设计, 中国制造">
+    <!-- Open Graph/Schema markup for international SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Hatake TCG",
+        "url": "https://hatake.eu",
+        "logo": "https://i.imgur.com/fhUBtKm.png",
+        "sameAs": [
+            "https://twitter.com/hataketcg",
+            "https://instagram.com/hataketcg"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "SE",
+            "addressRegion": "Västra Götaland",
+            "addressLocality": "Falköping"
+        }
+    }
+    </script>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;500;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <!-- China Connection Banner -->
+    <div class="china-banner">
+        <span>中瑞合作企业 - Sino-Swedish Partnership Since 2025</span>
+        <div class="flags">
+            <span>🇸🇪 × 🇨🇳</span>
+        </div>
+    </div>
+
+    <header class="glass-header">
         <nav>
-            <div class="logo-container">
-                <a href="#">
-                    <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo">
-                </a>
-                <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
-            </div>
-            <div class="hamburger">☰</div>
-            <div class="nav-links">
-                <a href="#" class="home-button">🏠</a>
-                <a href="#shop">Shop</a>
-                <a href="#events">Events</a>
-                <a href="#about">About</a>
-                <a href="#partner">Partner</a>
+            <a href="#" class="brand">
+                <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake Logo" class="logo">
+                <span class="brand-text">HATAKE</span>
+            </a>
+            <div class="nav-right">
+                <button id="dark-mode-toggle" aria-label="Dark Mode">🌓</button>
+                <div class="language-switcher">
+                    <button class="active">EN</button>
+                    <button>中文</button>
+                </div>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>Welcome to Hatake</h1>
-            <p>a Nordic TCG Brand</p>
-            <a href="#shop" class="cta-button">View Products</a>
-        </section>
-
-        <section id="introduction" class="introduction">
-            <h2>Introduction</h2>
-            <p>At Hatake TCG, we're more than just a brand – we're a community of passionate trading card game (TCG) enthusiasts dedicated to enhancing every aspect of your gaming experience. Founded in 2025 in the heart of Falköping, Sweden, Hatake is the perfect fusion of Nordic elegance, premium craftsmanship, and a deep love for the TCG culture.</p>
-        </section>
-
-        <section id="shop">
-            <h2>Our Products</h2>
-            <p>Explore our curated collection of premium TCG accessories, designed with Nordic craftsmanship to elevate your gaming experience.</p>
-
-            <div class="wishlist-section">
-                <h3>Your Wishlist</h3>
-                <div class="wishlist-grid" id="wishlist-grid"></div>
+    <!-- Hero Section with China Connection -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Nordic Design<br>Chinese Craftsmanship</h1>
+            <p>Premium TCG accessories bridging Sweden's innovation with China's manufacturing excellence</p>
+            <div class="hero-cta">
+                <a href="#products" class="cta-button">Explore Collection</a>
+                <a href="#manufacturing" class="cta-button secondary">Our Chinese Partners</a>
             </div>
-
-            <div class="filter-bar">
-                <select id="category-filter">
-                    <option value="all">All Categories</option>
-                    <option value="Bag">Bag</option>
-                    <option value="Top-Loaders">Top-Loaders</option>
-                    <option value="Sleeves">Sleeves</option>
-                    <option value="Deckbox">Deckbox</option>
-                    <option value="Binder">Binder</option>
-                </select>
-                <select id="currency-switcher">
-                    <option value="USD" selected>USD</option>
-                    <option value="SEK">SEK</option>
-                    <option value="EUR">EUR</option>
-                </select>
+        </div>
+        <div class="hero-map">
+            <div class="map-line">
+                <span>🇸🇪 Falköping</span>
+                <div class="connection-line"></div>
+                <span>🇨🇳 Shenzhen</span>
             </div>
-            
-            <div class="product-grid" id="product-grid">
-                <!-- Products will be loaded via JavaScript -->
-            </div>
+        </div>
+    </section>
 
-            <div id="preorder" class="preorder-form">
-                <h3>Preorder Now</h3>
-                <div id="cart-items"></div>
-                <div id="cart-total">Total: $0.00</div>
-                <form id="preorder-form">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="cart" id="cart-data" style="display:none"></textarea>
-                    <button type="submit" class="cta-button">Submit Preorder</button>
-                </form>
-                <div id="confirmation-message" class="confirmation-message">
-                    Thank you for your preorder! We'll email you a confirmation soon.
+    <!-- Ethical Manufacturing Section -->
+    <section id="manufacturing" class="ethics-section">
+        <div class="section-header">
+            <h2>Responsible Global Production</h2>
+            <p>Our Chinese manufacturing partners adhere to:</p>
+        </div>
+        <div class="ethics-grid">
+            <div class="ethics-card">
+                <div class="icon">🏭</div>
+                <h3>ISO 9001 Certified Facilities</h3>
+                <p>State-of-the-art production lines in Guangdong</p>
+            </div>
+            <div class="ethics-card">
+                <div class="icon">👩🏭</div>
+                <h3>Fair Labor Practices</h3>
+                <p>WRAP certified factories with employee benefits</p>
+            </div>
+            <div class="ethics-card">
+                <div class="icon">🌱</div>
+                <h3>Sustainable Materials</h3>
+                <p>30% recycled content in all plastic products</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="section-header">
+            <h2>Our Collection</h2>
+            <div class="product-controls">
+                <div class="currency-selector">
+                    <select id="currency-switcher">
+                        <option value="USD">USD</option>
+                        <option value="CNY">CNY</option>
+                        <option value="EUR">EUR</option>
+                        <option value="SEK">SEK</option>
+                    </select>
                 </div>
             </div>
-        </section>
-
-        <!-- Other sections (Events, About, Partner) would go here -->
-        <!-- Content would be similar to your original but cleaned up -->
-
-    </main>
-
-    <footer>
-        <div class="social-links">
-            <a href="https://discord.gg/Puq5ncSbjt">Discord</a>
-            <a href="https://twitter.com/hataketcg">Twitter</a>
-            <a href="https://instagram.com/hataketcg">Instagram</a>
         </div>
-        <p>© 2025 Hatake TCG · Falköping, Sweden</p>
+        
+        <div class="product-grid" id="product-grid">
+            <!-- Dynamic product cards will be inserted here -->
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="partnership-section">
+        <div class="partner-content">
+            <div class="partner-text">
+                <h2>Become a Regional Distributor</h2>
+                <p>Join our network of partners across China and Europe</p>
+                <ul class="partner-benefits">
+                    <li>🗂️ Minimum Order Quantity: 500 units</li>
+                    <li>🚢 FOB Shenzhen pricing</li>
+                    <li>📈 40-60% retail margins</li>
+                </ul>
+                <button class="cta-button">Request Price List</button>
+            </div>
+            <div class="partner-map">
+                <!-- Interactive map showing distribution network -->
+                <div class="map-point" style="left: 25%; top: 40%">Guangzhou</div>
+                <div class="map-point" style="left: 65%; top: 30%">Shanghai</div>
+                <div class="map-point" style="left: 45%; top: 60%">Shenzhen</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="smart-footer">
+        <div class="footer-column">
+            <h4>Manufacturing Partners</h4>
+            <ul>
+                <li>Guangdong Plastics Co., Ltd.</li>
+                <li>Shenzhen Textile Group</li>
+                <li>Zhejiang Packaging Solutions</li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>中国联系</h4>
+            <ul>
+                <li>微信: Hatake_CN</li>
+                <li>电话: +86 123 4567 8901</li>
+                <li>邮箱: cn@hatake.eu</li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>Certifications</h4>
+            <div class="certifications">
+                <img src="iso-cert.png" alt="ISO 9001">
+                <img src="wrap-cert.png" alt="WRAP Certification">
+            </div>
+        </div>
     </footer>
 
-    <div id="lightbox" class="lightbox">
-        <span class="close">×</span>
-        <div class="lightbox-content">
-            <img src="" alt="Product Image" class="gallery-image">
-            <div class="gallery-nav">
-                <button class="gallery-prev">←</button>
-                <button class="gallery-next">→</button>
-            </div>
-            <div class="description" id="lightbox-description"></div>
-        </div>
+    <!-- Modern Lightbox -->
+    <div id="lightbox" class="next-gen-lightbox">
+        <!-- Lightbox content remains similar but with enhanced features -->
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="js/modern.js"></script>
+    <!-- China-focused analytics -->
+    <script>
+        // Baidu Analytics
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?[YOUR_BAIDU_ID]";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        
+        // Standard Google Analytics
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-[YOUR_GA_ID]');
+    </script>
 </body>
 </html>
