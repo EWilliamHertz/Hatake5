@@ -1,4 +1,25 @@
 // In main.js
+class InventoryManager {
+  constructor() {
+    this.inventory = new Map();
+  }
+
+  async loadInventory() {
+    const response = await fetch('/api/inventory');
+    const data = await response.json();
+    this.inventory = new Map(data);
+    this.updateUI();
+  }
+
+  updateUI() {
+    document.querySelectorAll('[data-inventory]').forEach(el => {
+      const productId = el.dataset.productId;
+      el.textContent = this.inventory.get(productId) || 0;
+      el.classList.toggle('low-stock', this.inventory.get(productId) < 5);
+    });
+  }
+}
+// In main.js
 class MobileMenu {
   constructor() {
     this.menu = document.querySelector('.mobile-menu');
