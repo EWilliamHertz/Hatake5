@@ -352,11 +352,16 @@ th, td {
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
-    transition: transform 0.3s;
+    transition: transform 0.3s, color 0.3s;
 }
 
 #dark-mode-toggle:hover {
     transform: scale(1.1);
+    color: var(--accent);
+}
+
+body.dark-mode #dark-mode-toggle {
+    color: #f4f4f4;
 }
 
 body.dark-mode .product-card,
