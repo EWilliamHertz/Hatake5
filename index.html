@@ -1,197 +1,197 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hatake TCG - Nordic Quality, Global Craftsmanship</title>
-    <meta name="description" content="Premium TCG accessories designed in Sweden, crafted with precision in China">
-    <!-- SEO Meta Tags with Chinese keywords -->
-    <meta name="keywords" content="TCG accessories, 集换式卡牌, 卡牌保护套, 瑞典设计, 中国制造">
-    <!-- Open Graph/Schema markup for international SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Hatake TCG",
-        "url": "https://hatake.eu",
-        "logo": "https://i.imgur.com/fhUBtKm.png",
-        "sameAs": [
-            "https://twitter.com/hataketcg",
-            "https://instagram.com/hataketcg"
-        ],
-        "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "SE",
-            "addressRegion": "Västra Götaland",
-            "addressLocality": "Falköping"
-        }
-    }
-    </script>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Hatake | Premium TCG Accessories</title>
+    <meta name="description" content="Crafting premium TCG accessories with Nordic precision. Deck boxes, sleeves, binders, and tournament gear for serious collectors.">
+    
+    <!-- Preconnect and Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;500;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Modern CSS Reset -->
+    <link rel="stylesheet" href="css/modern-reset.css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- SEO Optimization -->
+    <meta property="og:title" content="Hatake | Premium TCG Accessories">
+    <meta property="og:description" content="Nordic-engineered protection for your valuable cards. Premium deck boxes, sleeves, and collectible accessories.">
+    <meta property="og:image" content="https://i.imgur.com/fhUBtKm.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
-    <!-- China Connection Banner -->
-    <div class="china-banner">
-        <span>中瑞合作企业 - Sino-Swedish Partnership Since 2025</span>
-        <div class="flags">
-            <span>🇸🇪 × 🇨🇳</span>
-        </div>
-    </div>
-
-    <header class="glass-header">
-        <nav>
-            <a href="#" class="brand">
-                <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake Logo" class="logo">
-                <span class="brand-text">HATAKE</span>
+    <!-- Sticky Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="/" class="brand">
+                <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake Logo" width="120" height="40">
             </a>
-            <div class="nav-right">
-                <button id="dark-mode-toggle" aria-label="Dark Mode">🌓</button>
-                <div class="language-switcher">
-                    <button class="active">EN</button>
-                    <button>中文</button>
+            
+            <div class="nav-group">
+                <ul class="nav-links">
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+                
+                <div class="nav-utils">
+                    <button class="theme-toggle" aria-label="Toggle Theme">
+                        <span class="theme-icon"></span>
+                    </button>
+                    <button class="cart-counter">
+                        <span class="cart-icon"></span>
+                        <span class="cart-count">0</span>
+                    </button>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Precision Protection<br> for Valuable Collections</h1>
+            <p class="hero-subtitle">Nordic-engineered TCG accessories built to last</p>
+            <a href="#products" class="cta-button">
+                Explore Collection
+                <span class="arrow-icon"></span>
+            </a>
+        </div>
+        
+        <div class="hero-carousel">
+            <div class="carousel-item active" style="background-image: url('/images/IMG_9924.jpg')"></div>
+            <div class="carousel-item" style="background-image: url('/images/IMG_9814.jpg')"></div>
+            <div class="carousel-item" style="background-image: url('/images/IMG_9960.jpg')"></div>
+        </div>
     </header>
 
-    <!-- Hero Section with China Connection -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Nordic Design<br>Chinese Craftsmanship</h1>
-            <p>Premium TCG accessories bridging Sweden's innovation with China's manufacturing excellence</p>
-            <div class="hero-cta">
-                <a href="#products" class="cta-button">Explore Collection</a>
-                <a href="#manufacturing" class="cta-button secondary">Our Chinese Partners</a>
+    <!-- Featured Products -->
+    <section id="products" class="section products-section">
+        <h2 class="section-title">Core Collection</h2>
+        
+        <div class="product-filters">
+            <div class="filter-group">
+                <label>Category:</label>
+                <select class="filter-select" id="categoryFilter">
+                    <option value="all">All Products</option>
+                    <option value="sleeves">Card Sleeves</option>
+                    <option value="storage">Deck Storage</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Sort By:</label>
+                <select class="filter-select" id="sortFilter">
+                    <option value="newest">Newest First</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                </select>
             </div>
         </div>
-        <div class="hero-map">
-            <div class="map-line">
-                <span>🇸🇪 Falköping</span>
-                <div class="connection-line"></div>
-                <span>🇨🇳 Shenzhen</span>
+
+        <div class="product-grid">
+            <!-- Product cards from original content -->
+            <article class="product-card" data-category="storage">
+                <div class="product-media">
+                    <img src="/images/IMG_2740.jpeg" alt="Tournament Duffel Bag" loading="lazy">
+                    <div class="product-badges">
+                        <span class="badge new">New</span>
+                        <span class="badge eco">Eco-Friendly</span>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Tournament Duffel Bag</h3>
+                    <p class="product-desc">47*28*55cm professional-grade carrier</p>
+                    <div class="product-pricing">
+                        <span class="price">$30.00</span>
+                        <div class="stock-indicator">22 remaining</div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="wishlist-btn"></button>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Repeat other product cards following same structure -->
+            
+        </div>
+    </section>
+
+    <!-- Technology Showcase -->
+    <section class="tech-showcase">
+        <div class="tech-content">
+            <h2>Nordic Craftsmanship</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon material-icon"></div>
+                    <h3>Premium Materials</h3>
+                    <p>Military-grade polymers and sustainable fabrics</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon precision-icon"></div>
+                    <h3>Precision Engineering</h3>
+                    <p>±0.1mm manufacturing tolerance</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon eco-icon"></div>
+                    <h3>Sustainable Production</h3>
+                    <p>100% recyclable packaging</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Ethical Manufacturing Section -->
-    <section id="manufacturing" class="ethics-section">
-        <div class="section-header">
-            <h2>Responsible Global Production</h2>
-            <p>Our Chinese manufacturing partners adhere to:</p>
-        </div>
-        <div class="ethics-grid">
-            <div class="ethics-card">
-                <div class="icon">🏭</div>
-                <h3>ISO 9001 Certified Facilities</h3>
-                <p>State-of-the-art production lines in Guangdong</p>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#sustainability">Sustainability</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                </ul>
             </div>
-            <div class="ethics-card">
-                <div class="icon">👩🏭</div>
-                <h3>Fair Labor Practices</h3>
-                <p>WRAP certified factories with employee benefits</p>
+            
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#warranty">Warranty</a></li>
+                    <li><a href="#returns">Returns</a></li>
+                </ul>
             </div>
-            <div class="ethics-card">
-                <div class="icon">🌱</div>
-                <h3>Sustainable Materials</h3>
-                <p>30% recycled content in all plastic products</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="products-section">
-        <div class="section-header">
-            <h2>Our Collection</h2>
-            <div class="product-controls">
-                <div class="currency-selector">
-                    <select id="currency-switcher">
-                        <option value="USD">USD</option>
-                        <option value="CNY">CNY</option>
-                        <option value="EUR">EUR</option>
-                        <option value="SEK">SEK</option>
-                    </select>
+            
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://discord.gg/Puq5ncSbjt" class="social-link discord"></a>
+                    <a href="https://twitter.com/hataketcg" class="social-link twitter"></a>
+                    <a href="https://instagram.com/hataketcg" class="social-link instagram"></a>
                 </div>
             </div>
         </div>
         
-        <div class="product-grid" id="product-grid">
-            <!-- Dynamic product cards will be inserted here -->
-        </div>
-    </section>
-
-    <!-- Partnership Section -->
-    <section class="partnership-section">
-        <div class="partner-content">
-            <div class="partner-text">
-                <h2>Become a Regional Distributor</h2>
-                <p>Join our network of partners across China and Europe</p>
-                <ul class="partner-benefits">
-                    <li>🗂️ Minimum Order Quantity: 500 units</li>
-                    <li>🚢 FOB Shenzhen pricing</li>
-                    <li>📈 40-60% retail margins</li>
-                </ul>
-                <button class="cta-button">Request Price List</button>
-            </div>
-            <div class="partner-map">
-                <!-- Interactive map showing distribution network -->
-                <div class="map-point" style="left: 25%; top: 40%">Guangzhou</div>
-                <div class="map-point" style="left: 65%; top: 30%">Shanghai</div>
-                <div class="map-point" style="left: 45%; top: 60%">Shenzhen</div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="smart-footer">
-        <div class="footer-column">
-            <h4>Manufacturing Partners</h4>
-            <ul>
-                <li>Guangdong Plastics Co., Ltd.</li>
-                <li>Shenzhen Textile Group</li>
-                <li>Zhejiang Packaging Solutions</li>
-            </ul>
-        </div>
-        <div class="footer-column">
-            <h4>中国联系</h4>
-            <ul>
-                <li>微信: Hatake_CN</li>
-                <li>电话: +86 123 4567 8901</li>
-                <li>邮箱: cn@hatake.eu</li>
-            </ul>
-        </div>
-        <div class="footer-column">
-            <h4>Certifications</h4>
-            <div class="certifications">
-                <img src="iso-cert.png" alt="ISO 9001">
-                <img src="wrap-cert.png" alt="WRAP Certification">
+        <div class="footer-legal">
+            <p>© 2025 Hatake TCG. Crafted in Sweden.</p>
+            <div class="legal-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
             </div>
         </div>
     </footer>
 
-    <!-- Modern Lightbox -->
-    <div id="lightbox" class="next-gen-lightbox">
-        <!-- Lightbox content remains similar but with enhanced features -->
-    </div>
-
-    <script src="js/modern.js"></script>
-    <!-- China-focused analytics -->
-    <script>
-        // Baidu Analytics
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?[YOUR_BAIDU_ID]";
-            var s = document.getElementsByTagName("script")[0]; 
-            s.parentNode.insertBefore(hm, s);
-        })();
-        
-        // Standard Google Analytics
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-[YOUR_GA_ID]');
-    </script>
+    <!-- Modern Scripts -->
+    <script src="js/main.js" type="module"></script>
+    <!-- Cloudflare Script -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
 </html>
