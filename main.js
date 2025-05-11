@@ -1,4 +1,23 @@
 // In main.js
+class AnalyticsManager {
+  trackEvent(category, action, label) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', action, {
+        'event_category': category,
+        'event_label': label
+      });
+    }
+  }
+
+  init() {
+    document.addEventListener('click', e => {
+      if (e.target.closest('.add-to-cart')) {
+        this.trackEvent('Cart', 'Add Item');
+      }
+    });
+  }
+}
+// In main.js
 class InventoryManager {
   constructor() {
     this.inventory = new Map();
