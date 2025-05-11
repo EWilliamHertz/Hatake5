@@ -14,23 +14,32 @@ if (hamburger && navLinks) {
     });
 }
 
-const darkModeToggle = document.getElementById('dark-mode-toggle');
-const body = document.body;
+document.addEventListener('DOMContentLoaded', () => {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
 
-if (localStorage.getItem('darkMode') === 'enabled') {
-    body.classList.add('dark-mode');
-    darkModeToggle.textContent = '☀️';
-} else {
-    darkModeToggle.textContent = '🌙';
-}
+    if (!darkModeToggle) {
+        console.error('Dark mode toggle button not found');
+        return;
+    }
 
-darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    const isDarkMode = body.classList.contains('dark-mode');
-    darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-    localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+    // Set initial state
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark-mode');
+        darkModeToggle.textContent = '☀️';
+    } else {
+        darkModeToggle.textContent = '🌙';
+    }
+
+    // Toggle dark mode
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDarkMode = body.classList.contains('dark-mode');
+        darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+        localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+        console.log('Dark mode:', isDarkMode);
+    });
 });
-
 
 const categoryFilter = document.getElementById('category-filter');
 const sortFilter = document.getElementById('sort-filter');
@@ -287,7 +296,6 @@ const productImages = {
     '480-Slot Binder': ['/images/IMG_9814.jpg', '/images/IMG_9839.jpg', '/images/IMG_9818.jpg', '/images/IMG_9816.jpg', '/images/IMG_9819.jpg', '/images/IMG_9820.jpg', '/images/IMG_9823.jpg', '/images/IMG_9824.jpg', '/images/IMG_9825.jpg', '/images/IMG_9826.jpg']
 };
 
-
 let currentImageIndex = 0;
 let productName = '';
 
@@ -333,7 +341,7 @@ document.querySelectorAll('.product-card').forEach(card => {
 });
 
 function updateGallery() {
-    const images = [productName];
+    const images = productImages[productName];
     lightboxImg.src = images[currentImageIndex];
     const thumbnails = lightbox.querySelectorAll('.thumbnail');
     thumbnails.forEach(thumb => {
