@@ -1,0 +1,514 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hatake TCG - Premium TCG Accessories</title>
+    <meta name="description" content="Premium TCG accessories crafted in Sweden by Hatake TCG. Shop deck boxes, sleeves, and more for trading card games.">
+    <meta name="keywords" content="TCG accessories, Hatake TCG, card sleeves, deck boxes, Sweden">
+    <meta name="author" content="Hatake TCG">
+    <meta property="og:title" content="Hatake TCG - Premium TCG Accessories">
+    <meta property="og:description" content="Discover premium TCG accessories crafted with passion in Sweden.">
+    <meta property="og:image" content="https://i.imgur.com/fhUBtKm.png">
+    <meta property="og:url" content="https://hatake.eu/">
+    <!-- Favicon Code -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <!-- End Favicon Code -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header role="banner">
+        <nav role="navigation">
+            <div class="logo-container">
+                <a href="#" title="Back to Top">
+                    <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo" loading="lazy">
+                </a>
+                <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+            <div class="hamburger">☰</div>
+            <div class="nav-links">
+                <a href="#" class="home-button">🏠</a>
+                <a href="#shop">Shop</a>
+                <a href="#events">Events</a>
+                <a href="#about">About</a>
+                <a href="#partner">Partner</a>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        <section class="hero">
+            <h1>Welcome to Hatake</h1>
+            <p>a Nordic TCG Brand</p>
+            <a href="#shop" class="cta-button">View Products</a>
+        </section>
+
+        <section id="introduction" class="introduction">
+            <h2>Introduction</h2>
+            <p>At Hatake TCG, we’re more than just a brand – we’re a community of passionate trading card game (TCG) enthusiasts dedicated to enhancing every aspect of your gaming experience. Founded in 2025 in the heart of Falköping, Sweden, Hatake is the perfect fusion of Nordic elegance, premium craftsmanship, and a deep love for the TCG culture.</p>
+            <p>Our mission is clear: to craft high-quality, innovative gear that rivals the best in the industry, while staying true to our roots. With a commitment to ethical manufacturing and a vision for sustainable Nordic production, we’re not just creating products – we’re building a legacy.</p>
+        </section>
+
+        <section id="shop">
+            <h2>Our Products</h2>
+            <p>Please click the product(s) you wish to see more of.</p>
+            <p>Explore our curated collection of premium TCG accessories, designed with Nordic craftsmanship to elevate your gaming experience.</p>
+
+            <div class="wishlist-section">
+                <h3>Your Wishlist</h3>
+                <div class="wishlist-grid" id="wishlist-grid"></div>
+            </div>
+
+            <div class="filter-bar">
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="Bag">Bag</option>
+                    <option value="Top-Loaders">Top-Loaders</option>
+                    <option value="Sleeves">Sleeves</option>
+                    <option value="Deckbox">Deckbox</option>
+                    <option value="Binder">Binder</option>
+                </select>
+                <select id="sort-filter">
+                    <option value="default">Sort: Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+                <select id="currency-switcher">
+                    <option value="USD" selected>USD</option>
+                    <option value="SEK">SEK</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </div>
+            <div class="product-grid">
+                <div class="product-card" data-category="Bag" data-price="30.00" data-name="Duffel Bag" data-stock="22" data-release-date="2025-07-15" onclick="openLightbox('Duffel Bag')">
+                    <img src="/images/IMG_2740.jpeg" alt="Black Hatake TCG Duffel Bag for tournaments" class="product-image" loading="lazy">
+                    <h3>Duffel Bag</h3>
+                    <p>47*28*55cm tournament-ready bag</p>
+                    <div class="price">$30</div>
+                    <div class="countdown-timer" id="timer-Duffel Bag"></div>
+                    <div class="stock-indicator">Only 22 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
+                </div>
+                <div class="product-card" data-category="Top-Loaders" data-price="3.00" data-name="25x 35pt Top-Loaders" data-stock="80" data-release-date="2025-10-15" onclick="openLightbox('25x 35pt Top-Loaders')">
+                    <img src="/images/IMG_9971.jpg" alt="Pack of 25 Hatake TCG 35pt Top-Loaders for standard cards" class="product-image" loading="lazy">
+                    <h3>25x 35pt Top-Loaders</h3>
+                    <p>Pack of 25 for standard cards</p>
+                    <div class="price">$3.00</div>
+                    <div class="countdown-timer" id="timer-25x 35pt Top-Loaders"></div>
+                    <div class="stock-indicator">Only 80 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
+                </div>
+                <div class="product-card" data-category="Top-Loaders" data-price="3.50" data-name="10x 130pt Top-Loaders" data-stock="200" data-release-date="2025-10-15" onclick="openLightbox('10x 130pt Top-Loaders')">
+                    <img src="/images/IMG_9979.jpg" alt="Pack of 10 Hatake TCG 130pt Top-Loaders for multiple cards" class="product-image" loading="lazy">
+                    <h3>10x 130pt Top-Loaders</h3>
+                    <p>Pack of 10 for Multiple cards</p>
+                    <div class="price">$3.50</div>
+                    <div class="countdown-timer" id="timer-10x 130pt Top-Loaders"></div>
+                    <div class="stock-indicator">Only 200 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
+                </div>
+                <div class="product-card" data-category="Sleeves" data-price="8.90" data-name="Matte Sleeves" data-stock="500" data-release-date="2025-10-15" onclick="openLightbox('Matte Sleeves')">
+                    <img src="/images/IMG_9960.jpg" alt="Pack of 100 Hatake TCG premium black matte sleeves" class="product-image" loading="lazy">
+                    <h3>Matte Sleeves</h3>
+                    <p>100 premium black sleeves (66x91mm)</p>
+                    <div class="price">$8.90</div>
+                    <div class="countdown-timer" id="timer-Matte Sleeves"></div>
+                    <div class="stock-indicator">Only 500 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
+                </div>
+                <div class="product-card" data-category="Deckbox" data-price="30.00" data-name="PU DeckBox" data-stock="100" data-release-date="2025-10-15" onclick="openLightbox('PU DeckBox')">
+                    <img src="/images/IMG_9924.jpg" alt="Hatake TCG PU DeckBox with magnetic closure" class="product-image" loading="lazy">
+                    <h3>PU DeckBox</h3>
+                    <p>160+ card capacity with magnetic closure</p>
+                    <div class="price">$30.00</div>
+                    <div class="countdown-timer" id="timer-PU DeckBox"></div>
+                    <div class="stock-indicator">Only 100 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
+                </div>
+                <div class="product-card" data-category="Binder" data-price="36.00" data-name="480-Slot Binder" data-stock="50" data-release-date="2025-10-15" onclick="openLightbox('480-Slot Binder')">
+                    <img src="/images/IMG_9814.jpg" alt="Hatake TCG 480-slot zippered binder with side-loading pockets" class="product-image" loading="lazy">
+                    <h3>480-Slot Binder</h3>
+                    <p>Premium zippered binder with side-loading pockets</p>
+                    <div class="price">$36.00</div>
+                    <div class="countdown-timer" id="timer-480-Slot Binder"></div>
+                    <div class="stock-indicator">Only 50 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
+                </div>
+            </div>
+
+            <div id="preorder" class="preorder-form">
+                <h3>Preorder Now</h3>
+                <p>Reserve your Hatake TCG products before they launch!</p>
+                <div id="cart-items"></div>
+                <div id="cart-total" style="margin-top: 1rem; font-weight: bold;">Total: $0.00</div>
+                <form id="preorder-form" action="https://formspree.io/f/xanobrpo" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="cart" id="cart-data" style="display: none;"></textarea>
+                    <button type="submit" class="cta-button">Submit Preorder</button>
+                </form>
+                <div id="confirmation-message" class="confirmation-message">
+                    Thank you for your preorder! We’ll email you a confirmation soon.
+                </div>
+            </div>
+        </section>
+
+        <section id="events" role="region" aria-label="Upcoming Events">
+            <h2>Upcoming Events</h2>
+            <p>Join us at our upcoming TCG events across the Nordics!</p>
+            <div class="filter-bar">
+                <select id="event-type-filter" aria-label="Filter by Event Type">
+                    <option value="all">All Events</option>
+                    <option value="convention">Conventions</option>
+                    <option value="expo">Expos</option>
+                </select>
+            </div>
+            <div class="event-grid">
+                <div class="event-card" data-type="convention" data-region="vastra-gotalands-lan">
+                    <img src="https://placehold.co/300x200?text=Need+to+be+Geek+Convention" alt="Need to be Geek Convention in Skara" class="event-image" loading="lazy">
+                    <h3>Need to be Geek Convention – Skara, September 2025</h3>
+                    <p><strong>Date:</strong> September 27, 2025</p>
+                    <p><strong>Location:</strong> Multihallen, Skara</p>
+                    <p>This geek culture event features everything from Pokémon and Star Wars to Warhammer and DnD. Stop by to see our premium TCG accessories, meet our team, and connect with fellow enthusiasts. Free entry!</p>
+                    <a href="https://needtobegeek.se" target="_blank" class="cta-button">Learn More</a>
+                </div>
+                <div class="event-card" data-type="expo" data-region="skane">
+                    <img src="https://placehold.co/300x200?text=SweCard+Expo" alt="SweCard Expo in Svedala" class="event-image" loading="lazy">
+                    <h3>SweCard Expo – Svedala, October 2025</h3>
+                    <p><strong>Date:</strong> October 11, 2025</p>
+                    <p><strong>Location:</strong> Svedala (20 minutes from Malmö)</p>
+                    <p>We’ll be showcasing our full range of TCG accessories alongside international exhibitors like LetsCollect Cards from Denmark. A great opportunity to explore our products and connect with the TCG community!</p>
+                    <a href="https://sweCard.org" target="_blank" class="cta-button">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>Our Story</h2>
+            <div class="grid-2col">
+                <div class="partner-card">
+                    <h3>Founded in 2025</h3>
+                    <p>Hatake TCG was founded by Ernst-William Hertz, Mark Jensen and Virre passionate TCG enthusiasts and entreprenuers committed to creating premium, sustainable accessories. Our journey began in Falköping, Sweden, with a vision to revolutionize TCG gear while supporting Nordic industry.</p>
+                    <p>Hatake TCG isn’t just about products; it’s about building a legacy. Virre, Mark, and Ernst-William are dedicated to crafting gear that protects and inspires, all while fostering a community where every player feels at home. With their sights set on full Nordic production, they’re proving that passion, teamwork, and a touch of Nordic elegance can redefine the TCG experience.</p>
+                </div>
+                <div class="partner-card">
+                    <h3>Our Mission</h3>
+                    <p>We combine Swedish design with ethical manufacturing, currently partnering with a trusted Chinese supplier who shares our commitment to fair labor practices and sustainability.</p>
+                    <p>Our mission is to challenge the greedy, monopolized TCG accessory market by offering premium products at accessible prices, ensuring every player can enjoy high-quality gear without breaking the bank.</p>
+                    <p>We’re working toward full Nordic production to further reduce our environmental impact, blending innovation with tradition to create accessories that embody the elegance and durability of Scandinavian craftsmanship.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">Why Choose Hatake?</h3>
+            <ul style="margin: 1rem 0 2rem 2rem;">
+                <li>Premium quality matching Dragon Shield/KMC</li>
+                <li>Unique Nordic-designed products</li>
+                <li>Ethical manufacturing practices</li>
+                <li>Supporting Swedish industry</li>
+                <li>Competitive retailer margins</li>
+            </ul>
+        </section>
+
+        <section id="partner">
+            <h2>Become a Partner</h2>
+            
+            <div class="partner-card">
+                <h3>Invest in Hatake TCG’s Future</h3>
+                <p>At Hatake TCG, we’re building a premium brand that resonates with trading card game enthusiasts worldwide.</p>
+                <p>As a Swedish startup, we’ve already established a foothold in the TCG community with our high-quality accessories, and we’re ready to take the next step in our growth journey.</p>
+                <p>We’re excited to announce that Hatake TCG is valued at <span class="highlight">$30,000</span> as of 2030, reflecting our strong foundation and promising future.</p>
+                <p>Join our vision with:</p>
+                <ul style="margin: 1rem 0 2rem 2rem;">
+                    <li><span class="highlight">1% equity</span> for just <span class="highlight">$300</span></li>
+                    <li>Flexible investment options for smaller budgets</li>
+                    <li>Partnerships in Ystad, Malmö, Falköping (SE), and Esbjerg (DK)</li>
+                </ul>
+                <p>By investing, you’ll join a network dedicated to elevating the TCG experience with potential for significant returns. Contact us at <a href="/cdn-cgi/l/email-protection#a88e818a879a9c878d9a86a88d9a869a87869bc6c6879a" class="highlight"><span class="__cf_email__" data-cfemail="b19798939e83859e94839fb19483df9e839e95">[email protected]</span></a> to explore this opportunity.</p>
+            </div>
+
+            <div class="partner-card" style="margin-top: 2rem;">
+                <h3>Join Our Team</h3>
+                <p>We’re seeking passionate sales staff to represent Hatake TCG. Earn a percentage of net profits from sales to your clients while we handle shipping and logistics.</p>
+                <ul style="margin: 1rem 0 2rem 2rem;">
+                    <li>Be the primary contact for stores</li>
+                    <li>Earn commissions on all deliveries</li>
+                    <li>Join a growing brand in the TCG community</li>
+                </ul>
+                <p>Reach out to us at <a href="/cdn-cgi/l/email-protection#1e78737d706d6b707a6d715e7b6c306d707b7e30717b6c" class="highlight"><span class="__cf_email__" data-cfemail="3c5a555b564b4d565c4b577c594e124f52595c12535c4b">[email protected]</span></a> to learn more about this role.</p>
+
+                <div class="partner-form">
+                    <h4>Apply to Join Our Team</h4>
+                    <form id="partner-form" action="https://formspree.io/f/mldblqpl" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="business_name" placeholder="Business Name (Optional)">
+                        <input type="text" name="location" placeholder="Location (e.g., City, Country)" required>
+                        <select name="partnership_type" required>
+                            <option value="" disabled selected>Select Partnership Type</option>
+                            <option value="Retail Partner">Retail Partner</option>
+                            <option value="Sales Staff">Sales Staff</option>
+                            <option value="Investor">Investor</option>
+                        </select>
+                        <textarea name="message" placeholder="Tell us about yourself and your interest in Hatake TCG" required></textarea>
+                        <label>
+                            <input type="checkbox" name="request_samples" value="yes">
+                            I’d like to request samples (please specify SKUs in your message).
+                        </label>
+                        <button type="submit" class="cta-button">Submit Application</button>
+                    </form>
+                    <div id="partner-confirmation-message" class="confirmation-message">
+                        Thank you for your application! We’ll get back to you soon.
+                    </div>
+                </div>
+            </div>
+
+            <div class="partner-card" style="margin-top: 2rem;">
+                <h3>Retail Partnerships</h3>
+                <p>Stock Hatake TCG products and enjoy competitive margins. Our premium accessories are designed to meet the needs of serious TCG players.</p>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Product</th>
+                            <th>Buy-in Price</th>
+                            <th>Sales Price</th>
+                            <th>Profit</th>
+                        </tr>
+                        <tr>
+                            <td>Matte Sleeves</td>
+                            <td>$4.80</td>
+                            <td>$8.90</td>
+                            <td>$4.10</td>
+                        </tr>
+                        <tr>
+                            <td>480-Slot Binder</td>
+                            <td>$22.00</td>
+                            <td>$36.00</td>
+                            <td>$14.00</td>
+                        </tr>
+                        <tr>
+                            <td>25x 35pt Top-Loaders</td>
+                            <td>$2.00</td>
+                            <td>$3.00</td>
+                            <td>$1.00</td>
+                        </tr>
+                        <tr>
+                            <td>10x 130pt Top-Loaders</td>
+                            <td>$1.60</td>
+                            <td>$3.30</td>
+                            <td>$1.70</td>
+                        </tr>
+                        <tr>
+                            <td>PU DeckBox</td>
+                            <td>$13.00</td>
+                            <td>$25.00</td>
+                            <td>$12.00</td>
+                        </tr>
+                        <tr>
+                            <td>Duffel Bag</td>
+                            <td>$17.00</td>
+                            <td>$30.00</td>
+                            <td>$13.00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="/cdn-cgi/l/email-protection#a88e818a879a9c878d9a86a88d9a869a87869bc6c6879a" class="cta-button">Contact Us to Partner</a>
+            </div>
+
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                <details>
+                    <summary>How to retail?</summary>
+                    <p>As a retailer, you can stock Hatake TCG products by ordering through our catalog. Check the "Retail Partnerships" table above for buy-in and sales prices. To place an order, copy the order template from our catalog, fill in your quantities, and email it to <a href="/cdn-cgi/l/email-protection#5e38373c312c2a313b2c301e3b2c702d303b3e70313b2c" class="highlight"><span class="__cf_email__" data-cfemail="4c2a252e233e38232d3a260c293e622f32292c62232d3a">[email protected]</span></a>. You’re also entitled to samples—email us with the SKU of the products you’d like to test.</p>
+                </details>
+                <details>
+                    <summary>How can I get on-board the team?</summary>
+                    <p>We’re looking for passionate sales staff to join Hatake TCG. You’ll earn a percentage of net profits from sales to your clients while we handle shipping and logistics. To apply, use the "Apply to Join Our Team" form above or email us at <a href="/cdn-cgi/l/email-protection#1e78737d706d6b707a6d715e7b6c306d707b7e30717b6c" class="highlight"><span class="__cf_email__" data-cfemail="3c5a555b564b4d565c4b577c594e124f52595c12535c4b">[email protected]</span></a> with your details and why you’d be a great fit for our team.</p>
+                </details>
+                <details>
+                    <summary>Can I get a spreadsheet document featuring an invoice?</summary>
+                    <p>Yes! Download our retailer catalog, which includes a template for placing orders, here: <a href="https://docs.google.com/spreadsheets/d/12ZUSKc7exYyVhvOjGS0t4UcpgDVnxLcwSCVV2hsXGAA/edit?usp=drivesdk" download>Download Catalog</a>.</p>
+                </details>
+                <details>
+                    <summary>What are the shipping costs and timelines?</summary>
+                    <p>Shipping costs depend on your location and order size. For preorders, shipping will begin when the countdown timers reach zero (July 15, 2025 for Duffel Bags, October 15, 2025 for other products). We’ll provide detailed shipping estimates in your preorder confirmation email. For retail orders, shipping costs will be calculated based on the order template you submit. Contact us at <a href="/cdn-cgi/l/email-protection#a88e818a879a9c878d9a86a88d9a869a87869bc6c6879a" class="highlight"><span class="__cf_email__" data-cfemail="b19798939e83859e94839fb19483df9e839e95">[email protected]</span></a> for more details.</p>
+                </details>
+                <details>
+                    <summary>Can I cancel or modify my preorder?</summary>
+                    <p>Yes, you can cancel or modify your preorder before shipping begins. Please email us at <a href="/cdn-cgi/l/email-protection#5e38373c312c2a313b2c301e3b2c702d303b3e70313b2c" class="highlight"><span class="__cf_email__" data-cfemail="4c2a252e233e38232d3a260c293e622f32292c62232d3a">[email protected]</span></a> with your preorder details, and we’ll assist you. Note that modifications are subject to stock availability.</p>
+                </details>
+                <details>
+                    <summary>What products are available for sampling?</summary>
+                    <p>Retail partners are entitled to samples of our products. Available products include Matte Sleeves (SKU: 0.01), 480-Slot Binder (SKU: 0.02), 25x 35pt Top-Loaders (SKU: 0.031), 10x 130pt Top-Loaders (SKU: 0.032), PU DeckBox (SKU: 0.4), and Duffel Bag (SKU: 0.5). Use the "Apply to Join Our Team" form above and specify the SKUs you’d like to test in your message, or email us directly at <a href="/cdn-cgi/l/email-protection#6224404b463b3d464c3b472240574a574a41440c4d465057" class="highlight"><span class="__cf_email__" data-cfemail="5e3c38333e2325313b2c301e3b2c702d303b3e70313b2c">[email protected]</span></a>.</p>
+                </details>
+                <details>
+                    <summary>What are the minimum order quantities for retailers?</summary>
+                    <p>Minimum Order Quantities (MOQ) vary by product. As a guideline, our catalog suggests starting with quantities like 20 Matte Sleeves, 10 480-Slot Binders, 100 35pt Top-Loaders, 50 130pt Top-Loaders, 20 PU DeckBoxes, or 5 Duffel Bags. For specific MOQs, please contact us at <a href="/cdn-cgi/l/email-protection#7e1c13118d0c131a1f1d1f1e1c5e19131f171e1d50111a0c" class="highlight"><span class="__cf_email__" data-cfemail="5b39363d3825273c3621353e293529343f3a75343f2934">[email protected]</span></a> with your intended order details.</p>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="social-links">
+            <a href="https://discord.gg/Puq5ncSbjt">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.074.031c-.21.375-.395.807-.535 1.237a18.323 18.323 0 00-4.885 0c-.14-.43-.325-.862-.535-1.237a.074.074 0 00-.074-.031 19.791 19.791 0 00-4.885 1.515 20.154 20.154 0 00-6.083 14.215c.005.023.013.047.022.07a20.314 20.314 0 006.132 3.092.074.074 0 00.80.021c.473-.353.885-.776 1.235-1.231a.074.074 0 00-.042-.104 13.856 13.856 0 01-1.975-.977.074.074 0 01-.008-.123c.133-.1.265-.201.397-.303.131-.101.264-.201.397-.301a.074.074 0 01.087-.009c1.446.672 3.013 1.134 4.674 1.134s3.228-.462 4.674-1.134a.074.074 0 01.087.009c.133.1.265.201.397.301.131.101.264.201.397.303a.074.074 0 01-.008.123 13.856 13.856 0 01-1.975.977.074.074 0 00-.042.104c.35.455.762.878 1.235 1.231a.074.074 0 00.80.021 20.314 20.314 0 006.132-3.092c.009-.023.017-.047.022-.07a20.154 20.154 0 00-6.083-14.215zM8.466 15.697c-.915 0-1.666-.746-1.666-1.665 0-.919.751-1.665 1.666-1.665.916 0 1.667.746 1.667 1.665 0 .919-.751 1.665-1.667 1.665zm7.068 0c-.915 0-1.666-.746-1.666-1.665 0-.919.751-1.665 1.666-1.665.916 0 1.667.746 1.667 1.665 0 .919-.751 1.665-1.667 1.665z"/>
+                </svg>
+                Discord
+            </a>
+            <a href="https://twitter.com/hataketcg">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Twitter
+            </a>
+            <a href="https://instagram.com/hataketcg">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 4.771 0 3.584.012 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 1.691 4.771-1.691 4.771-4.771 1.691-4.85.07-4.85.012-4.85.012-3.204 0-3.584-.012-4.85-.07-3.252-.148-4.771-1.691-4.771-4.771 0-3.584.012 3.584.012-4.85.07-3.252.148-4.771-1.691-4.771-1.691-4.771 1.691-4.771 4.771-1.691 4.85-.07 4.85-.012 4.85-.012zm0 1.5c-3.204 0-3.584.012-4.85.07-2.678.122-4.165 1.609-4.287 4.287-.058 1.266-.07 1.646-.07 4.85s.012 3.584.07 4.85c.122 2.678 1.609 4.165 4.287 4.287 1.266.058 1.646.07 4.85.07s3.584-.012 4.85-.07c2.678-.122 4.165-1.609 4.287-4.287.058-1.266.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.122-2.678-1.609-4.165-4.287-4.287-1.266-.058-1.646-.07-4.85-.07zm0 5.838c-2.95 0-5.338 2.388-5.338 5.338s2.388 5.338 5.338 5.338 5.338-2.388 5.338-5.338-2.388-5.338-5.338-5.338zm0 8.676c-1.837 0-3.338-1.501-3.338-3.338s1.501-3.338 3.338-3.338 3.338 1.501 3.338 3.338-1.501 3.338-3.338 3.338zm6.406-11.414c0 .691-.559 1.25-1.25 1.25s-1.25-.559-1.25-1.25.559-1.25 1.25-1.25 1.25.559 1.25 1.25z"/>
+                </svg>
+                Instagram
+            </a>
+        </div>
+        <p>© 2025 Hatake TCG · Falköping, Sweden</p>
+    </footer>
+
+    <a href="#" class="back-to-top" title="Back to Top">↑</a>
+    <a href="#preorder" class="sticky-cta">Preorder Now</a>
+    <div id="lightbox" class="lightbox">
+        <span class="close">×</span>
+        <div class="lightbox-content">
+            <div class="gallery">
+                <img src="" alt="Product Image" class="gallery-image active" style="max-width: 90%;">
+                <button class="gallery-prev">←</button>
+                <button class="gallery-next">→</button>
+            </div>
+            <div class="description" id="lightbox-description"></div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // Lightbox and Gallery Logic
+        const productImages = {
+            'Duffel Bag': ['/images/IMG_2740.jpeg', '/images/IMG_2801.webp', '/images/IMG_2802.jpeg'],
+            'PU DeckBox': ['/images/IMG_9924.jpg', '/images/IMG_9915.jpg', '/images/IMG_9885.jpg', '/images/IMG_9889.jpg', '/images/IMG_9900.jpg', '/images/IMG_9901.jpg', '/images/IMG_9903.jpg', '/images/IMG_9904.jpg', '/images/IMG_9912.jpg', '/images/IMG_9941.jpg', '/images/IMG_9943.jpg', '/images/IMG_9947.jpg', '/images/IMG_9948.jpg', '/images/IMG_9949.jpg', '/images/IMG_9943.jpg'],
+            '480-Slot Binder': ['/images/IMG_9814.jpg', '/images/IMG_9839.jpg', '/images/IMG_9818.jpg', '/images/IMG_9816.jpg', '/images/IMG_9819.jpg', '/images/IMG_9820.jpg', '/images/IMG_9823.jpg', '/images/IMG_9824.jpg', '/images/IMG_9825.jpg', '/images/IMG_9826.jpg'],
+            'Matte Sleeves': ['/images/IMG_9960.jpg', '/images/IMG_9968.jpg', '/images/IMG_9952.jpg', '/images/IMG_9954.jpg', '/images/IMG_9956.jpg', '/images/IMG_9957.jpg', '/images/IMG_9958.jpg', '/images/IMG_9962.jpg', '/images/IMG_9963.jpg', '/images/IMG_9965.jpg'],
+            '10x 130pt Top-Loaders': ['/images/IMG_9979.jpg', '/images/IMG_9980.jpg', '/images/IMG_9981.jpg', '/images/IMG_9982.jpg', '/images/IMG_9983.jpg', '/images/IMG_9984.jpg', '/images/IMG_9985.jpg', '/images/IMG_9986.jpg', '/images/IMG_9987.jpg'],
+            '25x 35pt Top-Loaders': ['/images/IMG_9971.jpg', '/images/IMG_9975.jpg', '/images/IMG_9982.jpg', '/images/IMG_9983.jpg', '/images/IMG_9984.jpg', '/images/IMG_9969.jpg', '/images/IMG_9966.jpg', '/images/IMG_9967.jpg', '/images/IMG_9953.jpg', '/images/IMG_9955.jpg']
+        };
+
+        let currentImageIndex = 0;
+        let productName = ''; // Define productName globally for keydown event
+
+        function openLightbox(name) {
+            productName = name; // Set the global productName
+            const lightbox = document.getElementById('lightbox');
+            const gallery = lightbox.querySelector('.gallery');
+            const description = document.getElementById('lightbox-description');
+            const images = productImages[productName];
+
+            if (!images || images.length === 0) {
+                alert('No additional images available for this product.');
+                return;
+            }
+
+            currentImageIndex = 0;
+            gallery.innerHTML = `
+                <img src="${images[currentImageIndex]}" alt="${productName} Image" class="gallery-image active" style="max-width: 90%;">
+                <button class="gallery-prev">←</button>
+                <button class="gallery-next">→</button>
+            `;
+            description.textContent = `${productName} - Click arrows to view more images (Total: ${images.length}).`;
+
+            lightbox.style.display = 'flex';
+
+            const prevButton = gallery.querySelector('.gallery-prev');
+            const nextButton = gallery.querySelector('.gallery-next');
+
+            prevButton.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
+                gallery.querySelector('.gallery-image').src = images[currentImageIndex];
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
+                gallery.querySelector('.gallery-image').src = images[currentImageIndex];
+            });
+        }
+
+        document.querySelector('.close').addEventListener('click', () => {
+            document.getElementById('lightbox').style.display = 'none';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').style.display === 'flex') {
+                const gallery = document.querySelector('.gallery');
+                const images = productImages[productName];
+                if (e.key === 'ArrowLeft') {
+                    currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
+                    gallery.querySelector('.gallery-image').src = images[currentImageIndex];
+                } else if (e.key === 'ArrowRight') {
+                    currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
+                    gallery.querySelector('.gallery-image').src = images[currentImageIndex];
+                } else if (e.key === 'Escape') {
+                    document.getElementById('lightbox').style.display = 'none';
+                }
+            }
+        });
+
+        // Existing script.js content (e.g., cart, wishlist, etc.) would go here
+    </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93dc5fc1bc4c7ba0',t:'MTc0NjkxMDkwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
