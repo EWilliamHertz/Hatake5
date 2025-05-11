@@ -1,62 +1,55 @@
-/* ==========================================================================
-   1. Variables
-   ========================================================================== */
-
+/* Base Styles */
 :root {
     --primary: #C41E3A;
     --accent: #4A90E2;
     --dark: #2D2D2D;
     --light: #F4F4F4;
+    --bg-light: #ffffff;
+    --text-light: #333333;
+    --bg-dark: #1a1a1a;
+    --text-dark: #f4f4f4;
 }
-
-/* ==========================================================================
-   2. Global Styles
-   ========================================================================== */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
 }
 
 body {
+    font-family: 'Open Sans', sans-serif;
     font-size: 1.1rem;
     line-height: 1.6;
-    display: block;
-    background: #fff;
-    color: #2D2D2D;
-    transition: background 0.3s ease, color 0.3s ease;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
 }
 
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1rem;
 }
 
-body.dark-mode {
-    background: #1a1a1a !important;
-    color: #f4f4f4 !important;
-}
-
-/* ==========================================================================
-   3. Header
-   ========================================================================== */
-
+/* Header Styles */
 header {
-    background: white;
+    background: var(--bg-light);
     padding: 1rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    transition: background 0.3s, box-shadow 0.3s;
-    height: 110px;
+    transition: all 0.3s;
 }
 
-header.scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+body.dark-mode header {
+    background: var(--bg-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 nav {
@@ -65,29 +58,21 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-    height: 100%;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
 }
 
 .logo {
     width: 150px;
+    height: auto;
 }
 
 .nav-links {
     display: flex;
     gap: 2rem;
-    align-items: center;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--dark);
+    color: inherit;
     font-weight: 600;
     transition: color 0.3s;
 }
@@ -96,228 +81,52 @@ nav {
     color: var(--accent);
 }
 
-.nav-links .home-button {
-    background: var(--primary);
-    color: white;
-    padding: 0.5rem;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.9rem;
-    transition: background 0.3s;
-}
-
-.nav-links .home-button:hover {
-    background: var(--accent);
-    color: white;
-}
-
-.hamburger {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--dark);
-}
-
-body.dark-mode header {
-    background: #2d2d2d;
-}
-
-body.dark-mode header.scrolled {
-    background: rgba(45, 45, 45, 0.95);
-}
-
-body.dark-mode .nav-links {
-    background: #2d2d2d;
-}
-
-body.dark-mode .nav-links a,
-body.dark-mode .hamburger {
-    color: #f4f4f4;
-}
-
-/* ==========================================================================
-   4. Main Content
-   ========================================================================== */
-
-main {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 6.5rem auto 0;
-    display: block;
-}
-
-.hero {
-    text-align: center;
-    padding-top: 6rem;
-    background: none;
-    color: var(--dark);
-    display: block;
-}
-
-.introduction {
-    margin-top: 2rem;
-}
-
-.filter-bar {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    align-items: center;
-    background: white;
-    padding: 0.5rem;
-    border-radius: 5px;
-}
-
-.filter-bar select {
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    background: white;
-    cursor: pointer;
-}
-
-.filter-bar select:focus {
-    outline: none;
-    border-color: var(--accent);
-}
-
-.product-grid, .event-grid, .wishlist-grid {
+/* Product Grid */
+.product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
-    justify-items: center;
-    justify-content: center;
+    margin: 2rem 0;
 }
 
-.product-card, .event-card {
-    background: white;
-    padding: 1.5rem;
+.product-card {
+    background: var(--bg-light);
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s, border 0.3s;
-    max-width: 100%;
-    width: 300px;
-    cursor: pointer;
-    position: relative;
-}
-
-.product-card:hover, .event-card:hover {
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    border: 1px solid var(--accent);
-}
-
-.partner-card {
-    background: white;
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.product-image, .event-image {
+body.dark-mode .product-card {
+    background: #333;
+    border-color: rgba(255,255,255,0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 1rem;
-    transition: transform 0.3s ease, object-fit 0.3s ease, height 0.3s ease;
 }
 
-.product-image:hover, .event-image:hover {
-    object-fit: contain;
-    height: auto;
-    max-height: 250px;
-    transform: scale(1.05);
-    background: #f9f9f9;
-    padding: 0.5rem;
-}
-
-.price {
-    color: var(--primary);
-    font-size: 1.5rem;
-    margin: 1rem 0;
-}
-
-.stock-indicator {
-    color: #e67e22;
-    font-size: 0.9rem;
-    margin: 0.5rem 0;
-}
-
-.stock-indicator.sold-out {
-    color: #e74c3c;
-    font-weight: bold;
-}
-
-.countdown-timer {
-    font-size: 0.9rem;
-    margin: 0.5rem 0;
-    color: var(--dark);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2rem 0;
-}
-
-th, td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.cta-button {
-    background: var(--primary);
-    color: white;
-    padding: 0.8rem 2rem;
+/* Buttons */
+.cta-button, .cart-button, .wishlist-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 5px;
+    background: var(--primary);
+    color: white;
     cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
+    transition: background 0.3s;
     margin-top: 1rem;
-    transition: background 0.3s;
-}
-
-.cta-button:hover {
-    background: var(--accent);
-}
-
-.wishlist-button, .cart-button {
-    background: var(--accent);
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     text-decoration: none;
-    display: inline-block;
-    margin-top: 0.5rem;
-    transition: background 0.3s;
 }
 
-.wishlist-button:hover, .cart-button:hover {
-    background: var(--primary);
-}
-
-.delete-button {
-    background: #e74c3c;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 0.5rem;
-    transition: background 0.3s;
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem
+.cart-button
