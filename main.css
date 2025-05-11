@@ -1,3 +1,34 @@
+/* Reviews Section */
+.reviews-section {
+  margin-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-md);
+}
+
+.review-card {
+  background: var(--surface);
+  padding: var(--space-md);
+  border-radius: 8px;
+  margin-bottom: var(--space-sm);
+}
+
+.review-meta {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  margin-bottom: var(--space-xs);
+}
+
+.rating-stars {
+  display: flex;
+  gap: 2px;
+  margin: var(--space-xs) 0;
+}
+
+.review-form {
+  margin-top: var(--space-lg);
+  max-width: 600px;
+}
 /* Mobile Menu Styles */
 .mobile-menu {
   position: fixed;
