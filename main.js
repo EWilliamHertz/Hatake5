@@ -1,3 +1,20 @@
+// In main.js
+class MobileMenu {
+  constructor() {
+    this.menu = document.querySelector('.mobile-menu');
+    this.toggleBtn = document.querySelector('.menu-toggle');
+  }
+
+  init() {
+    this.toggleBtn.addEventListener('click', this.toggleMenu.bind(this));
+  }
+
+  toggleMenu() {
+    this.menu.classList.toggle('active');
+    this.toggleBtn.classList.toggle('open');
+    document.body.classList.toggle('menu-open');
+  }
+}
 import { CartManager } from './cart.js';
 import { ThemeManager } from './theme.js';
 import { ProductFilter } from './filters.js';
