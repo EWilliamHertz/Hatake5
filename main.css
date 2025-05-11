@@ -1,3 +1,31 @@
+/* Blog System */
+.blog-grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+}
+
+.blog-card {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--surface);
+  border-radius: 8px;
+}
+
+.blog-card img {
+  border-radius: 4px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.blog-meta {
+  display: flex;
+  gap: var(--space-sm);
+  color: var(--accent);
+  font-size: 0.9em;
+}
 /* Reviews Section */
 .reviews-section {
   margin-top: var(--space-lg);
