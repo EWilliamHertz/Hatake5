@@ -24,6 +24,9 @@ body {
     font-size: 1.1rem;
     line-height: 1.6;
     display: block;
+    background: #fff;
+    color: #2D2D2D;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3 {
@@ -31,8 +34,8 @@ h1, h2, h3 {
 }
 
 body.dark-mode {
-    background: #1a1a1a;
-    color: #f4f4f4;
+    background: #1a1a1a !important;
+    color: #f4f4f4 !important;
 }
 
 /* ==========================================================================
@@ -127,6 +130,10 @@ body.dark-mode header.scrolled {
     background: rgba(45, 45, 45, 0.95);
 }
 
+body.dark-mode .nav-links {
+    background: #2d2d2d;
+}
+
 body.dark-mode .nav-links a,
 body.dark-mode .hamburger {
     color: #f4f4f4;
@@ -161,6 +168,9 @@ main {
     margin-bottom: 2rem;
     flex-wrap: wrap;
     align-items: center;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 5px;
 }
 
 .filter-bar select {
@@ -310,398 +320,4 @@ th, td {
     transition: background 0.3s;
     position: absolute;
     bottom: 1rem;
-    right: 1rem;
-}
-
-.delete-button:hover {
-    background: #c0392b;
-}
-
-.remove-button {
-    background: #e74c3c;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 0.5rem;
-    transition: background 0.3s;
-}
-
-.remove-button:hover {
-    background: #c0392b;
-}
-
-#currency-switcher {
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    background: white;
-    cursor: pointer;
-}
-
-#currency-switcher:focus {
-    outline: none;
-    border-color: var(--accent);
-}
-
-#dark-mode-toggle {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    transition: transform 0.3s, color 0.3s;
-}
-
-#dark-mode-toggle:hover {
-    transform: scale(1.1);
-    color: var(--accent);
-}
-
-body.dark-mode #dark-mode-toggle {
-    color: #f4f4f4;
-}
-
-body.dark-mode {
-    background: #1a1a1a;
-    color: #f4f4f4;
-}
-
-body.dark-mode .product-card,
-body.dark-mode .partner-card,
-body.dark-mode .event-card {
-    background: #333;
-    color: #f4f4f4;
-}
-
-body.dark-mode .countdown-timer {
-    color: #f4f4f4;
-}
-
-body.dark-mode .cta-button,
-body.dark-mode .wishlist-button,
-body.dark-mode .cart-button,
-body.dark-mode .back-to-top,
-body.dark-mode .sticky-cta {
-    background: #e74c3c;
-}
-
-body.dark-mode .cta-button:hover,
-body.dark-mode .wishlist-button:hover,
-body.dark-mode .cart-button:hover,
-body.dark-mode .back-to-top:hover,
-body.dark-mode .sticky-cta:hover {
-    background: #4A90E2;
-}
-
-/* ==========================================================================
-   5. Lightbox and Gallery
-   ========================================================================== */
-
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-}
-
-.lightbox-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 90%;
-    max-height: 80%;
-    overflow-y: auto;
-    text-align: center;
-}
-
-.gallery {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-height: 80vh;
-}
-
-.gallery-image {
-    max-width: 90%;
-    max-height: 70vh;
-    display: block;
-    margin: 0 auto;
-}
-
-.gallery-prev, .gallery-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 24px;
-}
-
-.gallery-prev {
-    left: 10px;
-}
-
-.gallery-next {
-    right: 10px;
-}
-
-.lightbox img {
-    max-width: 100%;
-    max-height: 300px;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
-
-.lightbox .video-placeholder {
-    background: #ddd;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 8px;
-}
-
-.lightbox .description {
-    margin-top: 1rem;
-    text-align: left;
-}
-
-.lightbox .close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-/* ==========================================================================
-   6. Footer
-   ========================================================================== */
-
-footer {
-    background: var(--dark);
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.social-links a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.social-links svg {
-    width: 24px;
-    height: 24px;
-}
-
-body.dark-mode footer {
-    background: #111;
-}
-
-/* ==========================================================================
-   7. Utilities
-   ========================================================================== */
-
-.grid-2col {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.highlight {
-    color: var(--primary);
-    font-weight: bold;
-}
-
-.preorder-form, .partner-form {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.preorder-form input, .preorder-form select, .partner-form input, .partner-form select, .partner-form textarea {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.partner-form textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.cart-item select {
-    padding: 0.3rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.confirmation-message {
-    display: none;
-    background: #2ecc71;
-    color: white;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-top: 1rem;
-    text-align: center;
-}
-
-.wishlist-section {
-    margin-bottom: 2rem;
-}
-
-.faq-section {
-    margin-top: 2rem;
-}
-
-.faq-section details {
-    margin-bottom: 1rem;
-}
-
-.faq-section summary {
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--primary);
-}
-
-.sticky-cta {
-    position: fixed;
-    bottom: 2rem;
-    left: 2rem;
-    background: var(--primary);
-    color: white;
-    padding: 0.8rem 1.2rem;
-    border-radius: 50%;
-    text-decoration: none;
-    display: none;
-    z-index: 999;
-    font-size: 1rem;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.sticky-cta:hover {
-    background: var(--accent);
-}
-
-.back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: var(--primary);
-    color: white;
-    padding: 0.8rem 1.2rem;
-    border-radius: 50%;
-    text-decoration: none;
-    display: none;
-    transition: background 0.3s;
-}
-
-.back-to-top:hover {
-    background: var(--accent);
-}
-
-/* ==========================================================================
-   8. Responsive Design
-   ========================================================================== */
-
-@media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        padding: 1rem;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .nav-links.active {
-        display: flex;
-    }
-    .nav-links .home-button {
-        width: 36px;
-        height: 36px;
-        padding: 0.4rem;
-        font-size: 0.8rem;
-    }
-    .sticky-cta {
-        padding: 0.6rem;
-        font-size: 0.9rem;
-        bottom: 1.5rem;
-        left: 1.5rem;
-    }
-    .table-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    table {
-        min-width: 600px;
-    }
-    th {
-        position: sticky;
-        top: 0;
-        background: white;
-        z-index: 10;
-    }
-    body.dark-mode .nav-links {
-        background: #2d2d2d;
-    }
-}
-
-@media (max-width: 400px) {
-    .product-card, .event-card {
-        padding: 1rem;
-        width: 100%;
-    }
-    .product-image, .event-image {
-        height: 150px;
-    }
-    .product-image:hover, .event-image:hover {
-        max-height: 200px;
-    }
-    .nav-links {
-        gap: 1rem;
-    }
-}
+    right: 1rem

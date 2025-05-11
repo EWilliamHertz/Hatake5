@@ -121,7 +121,7 @@
                 </select>
             </div>
             <div class="product-grid">
-                <div class="product-card" data-category="Bag" data-price="30.00" data-name="Duffel Bag" data-stock="22" data-release-date="2025-07-15" onclick="openLightbox('Duffel Bag')">
+                <div class="product-card" data-category="Bag" data-price="30.00" data-name="Duffel Bag" data-stock="22" data-release-date="2025-07-15">
                     <img src="/images/IMG_2740.jpeg" alt="Black Hatake TCG Duffel Bag for tournaments" class="product-image" loading="lazy">
                     <h3>Duffel Bag</h3>
                     <p>47*28*55cm tournament-ready bag</p>
@@ -131,7 +131,7 @@
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Top-Loaders" data-price="3.00" data-name="25x 35pt Top-Loaders" data-stock="80" data-release-date="2025-10-15" onclick="openLightbox('25x 35pt Top-Loaders')">
+                <div class="product-card" data-category="Top-Loaders" data-price="3.00" data-name="25x 35pt Top-Loaders" data-stock="80" data-release-date="2025-10-15">
                     <img src="/images/IMG_9971.jpg" alt="Pack of 25 Hatake TCG 35pt Top-Loaders for standard cards" class="product-image" loading="lazy">
                     <h3>25x 35pt Top-Loaders</h3>
                     <p>Pack of 25 for standard cards</p>
@@ -141,7 +141,7 @@
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Top-Loaders" data-price="3.50" data-name="10x 130pt Top-Loaders" data-stock="200" data-release-date="2025-10-15" onclick="openLightbox('10x 130pt Top-Loaders')">
+                <div class="product-card" data-category="Top-Loaders" data-price="3.50" data-name="10x 130pt Top-Loaders" data-stock="200" data-release-date="2025-10-15">
                     <img src="/images/IMG_9979.jpg" alt="Pack of 10 Hatake TCG 130pt Top-Loaders for multiple cards" class="product-image" loading="lazy">
                     <h3>10x 130pt Top-Loaders</h3>
                     <p>Pack of 10 for Multiple cards</p>
@@ -151,7 +151,7 @@
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Sleeves" data-price="8.90" data-name="Matte Sleeves" data-stock="500" data-release-date="2025-10-15" onclick="openLightbox('Matte Sleeves')">
+                <div class="product-card" data-category="Sleeves" data-price="8.90" data-name="Matte Sleeves" data-stock="500" data-release-date="2025-10-15">
                     <img src="/images/IMG_9960.jpg" alt="Pack of 100 Hatake TCG premium black matte sleeves" class="product-image" loading="lazy">
                     <h3>Matte Sleeves</h3>
                     <p>100 premium black sleeves (66x91mm)</p>
@@ -161,7 +161,7 @@
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Deckbox" data-price="30.00" data-name="PU DeckBox" data-stock="100" data-release-date="2025-10-15" onclick="openLightbox('PU DeckBox')">
+                <div class="product-card" data-category="Deckbox" data-price="30.00" data-name="PU DeckBox" data-stock="100" data-release-date="2025-10-15">
                     <img src="/images/IMG_9924.jpg" alt="Hatake TCG PU DeckBox with magnetic closure" class="product-image" loading="lazy">
                     <h3>PU DeckBox</h3>
                     <p>160+ card capacity with magnetic closure</p>
@@ -171,7 +171,7 @@
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Binder" data-price="36.00" data-name="480-Slot Binder" data-stock="50" data-release-date="2025-10-15" onclick="openLightbox('480-Slot Binder')">
+                <div class="product-card" data-category="Binder" data-price="36.00" data-name="480-Slot Binder" data-stock="50" data-release-date="2025-10-15">
                     <img src="/images/IMG_9814.jpg" alt="Hatake TCG 480-slot zippered binder with side-loading pockets" class="product-image" loading="lazy">
                     <h3>480-Slot Binder</h3>
                     <p>Premium zippered binder with side-loading pockets</p>
@@ -437,83 +437,6 @@
     </div>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script>
-        // Lightbox and Gallery Logic
-  const productImages = {
-    'Duffel Bag': ['/images/IMG_2740.jpeg', '/images/IMG_2801.webp', '/images/IMG_2802.jpeg'],
-    '25x 35pt Top-Loaders': ['/images/IMG_9971.jpg', '/images/IMG_9970.jpg', '/images/IMG_9972.jpg', '/images/IMG_9973.jpg', '/images/IMG_9974.jpg', '/images/IMG_9975.jpg', '/images/IMG_9976.jpg', '/images/IMG_9978.jpg'],
-    '10x 130pt Top-Loaders': ['/images/IMG_9979.jpg', '/images/IMG_9980.jpg', '/images/IMG_9981.jpg', '/images/IMG_9982.jpg', '/images/IMG_9983.jpg', '/images/IMG_9984.jpg', '/images/IMG_9985.jpg', '/images/IMG_9986.jpg', '/images/IMG_9987.jpg'],
-    'Matte Sleeves': ['/images/IMG_9960.jpg', '/images/IMG_9968.jpg', '/images/IMG_9952.jpg', '/images/IMG_9954.jpg', '/images/IMG_9956.jpg', '/images/IMG_9957.jpg', '/images/IMG_9958.jpg', '/images/IMG_9962.jpg', '/images/IMG_9963.jpg', '/images/IMG_9965.jpg'],
-    'PU DeckBox': ['/images/IMG_9924.jpg', '/images/IMG_9895.jpg', '/images/IMG_9899.jpg', '/images/IMG_9900.jpg', '/images/IMG_9901.jpg', '/images/IMG_9903.jpg', '/images/IMG_9904.jpg', '/images/IMG_9912.jpg', '/images/IMG_9941.jpg', '/images/IMG_9943.jpg', '/images/IMG_9947.jpg', '/images/IMG_9948.jpg', '/images/IMG_9949.jpg', '/images/IMG_9951.jpg'],
-    '480-Slot Binder': ['/images/IMG_9814.jpg', '/images/IMG_9839.jpg', '/images/IMG_9818.jpg', '/images/IMG_9816.jpg', '/images/IMG_9819.jpg', '/images/IMG_9820.jpg', '/images/IMG_9823.jpg', '/images/IMG_9824.jpg', '/images/IMG_9825.jpg', '/images/IMG_9826.jpg']
-};
-
-        let currentImageIndex = 0;
-        let productName = ''; // Define productName globally for keydown event
-
-        function openLightbox(name) {
-            productName = name; // Set the global productName
-            const lightbox = document.getElementById('lightbox');
-            const gallery = lightbox.querySelector('.gallery');
-            const description = document.getElementById('lightbox-description');
-            const images = productImages[productName];
-
-            if (!images || images.length === 0) {
-                alert('No additional images available for this product.');
-                return;
-            }
-
-            currentImageIndex = 0;
-            gallery.innerHTML = `
-                <img src="${images[currentImageIndex]}" alt="${productName} Image" class="gallery-image active" style="max-width: 90%;">
-                <button class="gallery-prev">←</button>
-                <button class="gallery-next">→</button>
-            `;
-            description.textContent = `${productName} - Click arrows to view more images (Total: ${images.length}).`;
-
-            lightbox.style.display = 'flex';
-
-            const prevButton = gallery.querySelector('.gallery-prev');
-            const nextButton = gallery.querySelector('.gallery-next');
-
-            prevButton.addEventListener('click', () => {
-                currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
-                gallery.querySelector('.gallery-image').src = images[currentImageIndex];
-            });
-
-            nextButton.addEventListener('click', () => {
-                currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
-                gallery.querySelector('.gallery-image').src = images[currentImageIndex];
-            });
-        }
-
-        document.querySelector('.close').addEventListener('click', () => {
-            document.getElementById('lightbox').style.display = 'none';
-        });
-            document.getElementById('lightbox').addEventListener('click', (e) => {
-    if (e.target === document.getElementById('lightbox')) {
-        document.getElementById('lightbox').style.display = 'none';
-    }
-});
-
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('lightbox').style.display === 'flex') {
-                const gallery = document.querySelector('.gallery');
-                const images = productImages[productName];
-                if (e.key === 'ArrowLeft') {
-                    currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
-                    gallery.querySelector('.gallery-image').src = images[currentImageIndex];
-                } else if (e.key === 'ArrowRight') {
-                    currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
-                    gallery.querySelector('.gallery-image').src = images[currentImageIndex];
-                } else if (e.key === 'Escape') {
-                    document.getElementById('lightbox').style.display = 'none';
-                }
-            }
-        });
-
-        // Existing script.js content (e.g., cart, wishlist, etc.) would go here
-    </script>
-    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93dc5fc1bc4c7ba0',t:'MTc0NjkxMDkwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+    <script src="script.js"></script>
 </body>
 </html>

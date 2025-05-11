@@ -37,7 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const isDarkMode = body.classList.contains('dark-mode');
         darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
         localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
-        console.log('Dark mode:', isDarkMode);
+        // Force style recalculation
+        body.style.transition = 'all 0.3s ease';
+        body.offsetHeight; // Trigger reflow
+        console.log('Dark mode toggled:', isDarkMode);
     });
 });
 
@@ -115,10 +118,11 @@ if (eventTypeFilter && eventRegionFilter) {
     eventRegionFilter.addEventListener('change', filterEvents);
 }
 
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 const exchangeRates = { USD: 1, SEK: 10.5, EUR: 0.95 };
 
 function updateCartDisplay() {
+    localStorage.setItem('cart', JSON.stringify(cart));
     const cartItemsDiv = document.getElementById('cart-items');
     const cartTotalDiv = document.getElementById('cart-total');
     const selectedCurrency = document.getElementById('currency-switcher').value;
@@ -299,58 +303,47 @@ const productImages = {
 let currentImageIndex = 0;
 let productName = '';
 
-document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', () => {
-        productName = card.dataset.name;
-        const images = productImages[productName];
-        if (!images || images.length === 0) {
-            alert('No additional images available for this product.');
-            return;
-        }
-
-        currentImageIndex = 0;
-        lightboxImg.src = images[currentImageIndex];
-        const thumbnailGallery = lightbox.querySelector('.thumbnail-gallery');
-        thumbnailGallery.innerHTML = images.map((img, index) => `
-            <img src="${img}" alt="${productName} Thumbnail ${index + 1}" class="thumbnail" data-index="${index}" ${index === 0 ? 'class="thumbnail active"' : ''}>
-        `).join('');
-        lightboxDescription.textContent = productDescriptions[productName] || 'No description available.';
-        lightbox.style.display = 'flex';
-
-        const prevButton = lightbox.querySelector('.gallery-prev');
-        const nextButton = lightbox.querySelector('.gallery-next');
-        const thumbnails = thumbnailGallery.querySelectorAll('.thumbnail');
-
-        prevButton.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
-            updateGallery();
-        });
-
-        nextButton.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
-            updateGallery();
-        });
-
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                currentImageIndex = parseInt(thumb.getAttribute('data-index'));
-                updateGallery();
-            });
-        });
-    });
-});
-
-function updateGallery() {
+function openLightbox(name) {
+    productName = name;
     const images = productImages[productName];
-    lightboxImg.src = images[currentImageIndex];
-    const thumbnails = lightbox.querySelectorAll('.thumbnail');
-    thumbnails.forEach(thumb => {
-        thumb.classList.remove('active');
-        if (parseInt(thumb.getAttribute('data-index')) === currentImageIndex) {
-            thumb.classList.add('active');
-        }
+    if (!images || images.length === 0) {
+        alert('No additional images available for this product.');
+        return;
+    }
+
+    currentImageIndex = 0;
+    const gallery = lightbox.querySelector('.gallery');
+    gallery.innerHTML = `
+        <img src="${images[currentImageIndex]}" alt="${productName} Image" class="gallery-image active" style="max-width: 90%;">
+        <button class="gallery-prev">←</button>
+        <button class="gallery-next">→</button>
+    `;
+    lightboxDescription.textContent = `${productName} - Click arrows to view more images (Total: ${images.length}).`;
+
+    lightbox.style.display = 'flex';
+
+    const prevButton = gallery.querySelector('.gallery-prev');
+    const nextButton = gallery.querySelector('.gallery-next');
+
+    prevButton.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
+        gallery.querySelector('.gallery-image').src = images[currentImageIndex];
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
+        gallery.querySelector('.gallery-image').src = images[currentImageIndex];
     });
 }
+
+document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+        if (!e.target.closest('.cart-button') && !e.target.closest('.wishlist-button')) {
+            const productName = card.dataset.name;
+            openLightbox(productName);
+        }
+    });
+});
 
 if (closeLightbox) {
     closeLightbox.addEventListener('click', () => {
@@ -361,6 +354,22 @@ if (closeLightbox) {
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) {
         lightbox.style.display = 'none';
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (lightbox.style.display === 'flex') {
+        const gallery = lightbox.querySelector('.gallery');
+        const images = productImages[productName];
+        if (e.key === 'ArrowLeft') {
+            currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
+            gallery.querySelector('.gallery-image').src = images[currentImageIndex];
+        } else if (e.key === 'ArrowRight') {
+            currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
+            gallery.querySelector('.gallery-image').src = images[currentImageIndex];
+        } else if (e.key === 'Escape') {
+            lightbox.style.display = 'none';
+        }
     }
 });
 
