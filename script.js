@@ -20,6 +20,8 @@ const body = document.body;
 if (localStorage.getItem('darkMode') === 'enabled') {
     body.classList.add('dark-mode');
     darkModeToggle.textContent = '☀️';
+} else {
+    darkModeToggle.textContent = '🌙';
 }
 
 darkModeToggle.addEventListener('click', () => {
@@ -28,6 +30,7 @@ darkModeToggle.addEventListener('click', () => {
     darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
     localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
 });
+
 
 const categoryFilter = document.getElementById('category-filter');
 const sortFilter = document.getElementById('sort-filter');
@@ -277,12 +280,13 @@ const closeLightbox = lightbox.querySelector('.close');
 
 const productImages = {
     'Duffel Bag': ['/images/IMG_2740.jpeg', '/images/IMG_2801.webp', '/images/IMG_2802.jpeg'],
-    '25x 35pt Top-Loaders': ['/images/IMG_9971.jpg', '/images/IMG_9975.jpg', '/images/IMG_9982.jpg', '/images/IMG_9983.jpg', '/images/IMG_9984.jpg', '/images/IMG_9969.jpg', '/images/IMG_9966.jpg', '/images/IMG_9967.jpg', '/images/IMG_9953.jpg', '/images/IMG_9955.jpg'],
+    '25x 35pt Top-Loaders': ['/images/IMG_9971.jpg', '/images/IMG_9970.jpg', '/images/IMG_9972.jpg', '/images/IMG_9973.jpg', '/images/IMG_9974.jpg', '/images/IMG_9975.jpg', '/images/IMG_9976.jpg', '/images/IMG_9978.jpg'],
     '10x 130pt Top-Loaders': ['/images/IMG_9979.jpg', '/images/IMG_9980.jpg', '/images/IMG_9981.jpg', '/images/IMG_9982.jpg', '/images/IMG_9983.jpg', '/images/IMG_9984.jpg', '/images/IMG_9985.jpg', '/images/IMG_9986.jpg', '/images/IMG_9987.jpg'],
     'Matte Sleeves': ['/images/IMG_9960.jpg', '/images/IMG_9968.jpg', '/images/IMG_9952.jpg', '/images/IMG_9954.jpg', '/images/IMG_9956.jpg', '/images/IMG_9957.jpg', '/images/IMG_9958.jpg', '/images/IMG_9962.jpg', '/images/IMG_9963.jpg', '/images/IMG_9965.jpg'],
-    'PU DeckBox': ['/images/IMG_9924.jpg', '/images/IMG_9915.jpg', '/images/IMG_9885.jpg', '/images/IMG_9889.jpg', '/images/IMG_9900.jpg', '/images/IMG_9901.jpg', '/images/IMG_9903.jpg', '/images/IMG_9904.jpg', '/images/IMG_9912.jpg', '/images/IMG_9941.jpg', '/images/IMG_9943.jpg', '/images/IMG_9947.jpg', '/images/IMG_9948.jpg', '/images/IMG_9949.jpg', '/images/IMG_9943.jpg'],
+    'PU DeckBox': ['/images/IMG_9924.jpg', '/images/IMG_9895.jpg', '/images/IMG_9899.jpg', '/images/IMG_9900.jpg', '/images/IMG_9901.jpg', '/images/IMG_9903.jpg', '/images/IMG_9904.jpg', '/images/IMG_9912.jpg', '/images/IMG_9941.jpg', '/images/IMG_9943.jpg', '/images/IMG_9947.jpg', '/images/IMG_9948.jpg', '/images/IMG_9949.jpg', '/images/IMG_9951.jpg'],
     '480-Slot Binder': ['/images/IMG_9814.jpg', '/images/IMG_9839.jpg', '/images/IMG_9818.jpg', '/images/IMG_9816.jpg', '/images/IMG_9819.jpg', '/images/IMG_9820.jpg', '/images/IMG_9823.jpg', '/images/IMG_9824.jpg', '/images/IMG_9825.jpg', '/images/IMG_9826.jpg']
 };
+
 
 let currentImageIndex = 0;
 let productName = '';
@@ -329,7 +333,7 @@ document.querySelectorAll('.product-card').forEach(card => {
 });
 
 function updateGallery() {
-    const images = productImages[productName];
+    const images = [productName];
     lightboxImg.src = images[currentImageIndex];
     const thumbnails = lightbox.querySelectorAll('.thumbnail');
     thumbnails.forEach(thumb => {
