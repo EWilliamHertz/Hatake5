@@ -1,3 +1,19 @@
+// main.js
+import { WishlistManager } from './wishlist.js';
+import { CheckoutManager } from './checkout.js';
+// ... other imports
+
+const wishlistManager = new WishlistManager();
+const checkoutManager = new CheckoutManager(cartManager);
+const performanceOptimizer = new PerformanceOptimizer();
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize all modules
+  wishlistManager.init();
+  checkoutManager.init();
+  performanceOptimizer.init();
+  // ... other initializations
+});
 // In main.js
 class AnalyticsManager {
   trackEvent(category, action, label) {
